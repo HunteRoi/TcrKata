@@ -1,12 +1,12 @@
 namespace TcrKata.Domain;
 
-public class Submarine : ISubmarine
+public class Submarine : ISubmarine, IDisposable
 {
     private record Command(string Name, int Value);
     private record State(int Aim, int Position, int Depth);
 
     private State _state = new(0, 0, 0);
-    private readonly ICommandParser _commandParser;
+    private ICommandParser? _commandParser;
 
     public Submarine()
     {
@@ -47,4 +47,9 @@ public class Submarine : ISubmarine
     public int Depth => this._state.Depth;
 
     private Command CreateCommand(string[] commandTokens) => new(commandTokens[0], int.Parse(commandTokens[1]));
+
+    public void Dispose()
+    {
+        this._commandParser = null;
+    }
 }
