@@ -31,8 +31,5 @@ public class Submarine : ISubmarine
 
     private record Command(string Name, int Value);
 
-    private Command CreateCommand(string[] commandTokens)
-    {
-        return new Command(commandTokens[0], int.Parse(commandTokens[1]));
-    }
+    private Command CreateCommand(string[] commandTokens) => new(commandTokens[0], int.Parse(commandTokens[1]));
 }
