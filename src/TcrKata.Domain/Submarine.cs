@@ -9,6 +9,11 @@ public class Submarine : ISubmarine
             this.Aim = 2;
             return;
         }
+        if (command == "down 3")
+        {
+            this.Aim = 3;
+            return;
+        }
         this.Aim += 1;
     }
 
