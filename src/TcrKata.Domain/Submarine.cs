@@ -14,11 +14,11 @@ public class Submarine : ISubmarine
         switch (commandObject.Name)
         {
             case "down":
-                this.Aim += commandObject.Value;
+                this._state = this._state with { Aim = this._state.Aim + commandObject.Value };
                 break;
 
             case "up":
-                this.Aim -= commandObject.Value;
+                this._state = this._state with { Aim = this._state.Aim - commandObject.Value };
                 break;
 
             case "forward":
@@ -31,14 +31,7 @@ public class Submarine : ISubmarine
         }
     }
 
-    public int Aim
-    {
-        get => this._state.Aim;
-        private set
-        {
-            this._state = this._state with { Aim = value };
-        }
-    }
+    public int Aim => this._state.Aim;
 
     public int Position
     {
