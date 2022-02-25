@@ -47,10 +47,6 @@ public class Submarine : ISubmarine, IDisposable
             .Bind(this.GetNexState)
             .Match(_ => _, this._state);
 
-    private Option<State> GetNexState(ICommand command) => command.Execute(this._state); 
-    
-    
-    
     /// <summary>
     ///     Gets the aim.
     /// </summary>
@@ -68,4 +64,6 @@ public class Submarine : ISubmarine, IDisposable
     /// </summary>
     /// <value>The depth.</value>
     public int Depth => this._state.Depth;
+
+    private Option<State> GetNexState(ICommand command) => command.Execute(this._state);
 }
