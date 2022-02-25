@@ -7,6 +7,10 @@ public class ForwardCommand : ICommand
 
     public State Execute(State currentState)
     {
-        throw new NotImplementedException();
+        return currentState with
+        {
+            Position = currentState.Position + this.Value,
+            Depth = currentState.Depth + (currentState.Aim * this.Value)
+        };
     }
 }
