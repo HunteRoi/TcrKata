@@ -5,11 +5,12 @@ public class Submarine : ISubmarine, IDisposable
     private record Command(string Name, int Value);
     private record State(int Aim, int Position, int Depth);
 
-    private State _state = new(0, 0, 0);
+    private State _state;
     private ICommandParser? _commandParser;
 
     public Submarine()
     {
+        this._state = new(0, 0, 0);
         this._commandParser = new CommandParser();
     }
 
