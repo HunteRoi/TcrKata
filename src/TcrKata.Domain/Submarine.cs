@@ -22,7 +22,7 @@ public class Submarine : ISubmarine
                 break;
 
             case "forward":
-                this.Position += commandObject.Value;
+                this._state = this._state with { Position = this._state.Position + commandObject.Value };
                 this.Depth += this.Aim * commandObject.Value;
                 break;
 
@@ -33,14 +33,7 @@ public class Submarine : ISubmarine
 
     public int Aim => this._state.Aim;
 
-    public int Position
-    {
-        get => this._state.Position;
-        private set
-        {
-            this._state = this._state with { Position = value };
-        }
-    }
+    public int Position => this._state.Position;
 
     public int Depth
     {
