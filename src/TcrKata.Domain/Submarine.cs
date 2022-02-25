@@ -23,7 +23,7 @@ public class Submarine : ISubmarine
 
             case "forward":
                 this._state = this._state with { Position = this._state.Position + commandObject.Value };
-                this.Depth += this.Aim * commandObject.Value;
+                this._state = this._state with { Depth = this._state.Depth + (this._state.Aim * commandObject.Value) };
                 break;
 
             default:
@@ -35,14 +35,7 @@ public class Submarine : ISubmarine
 
     public int Position => this._state.Position;
 
-    public int Depth
-    {
-        get => this._state.Depth;
-        private set
-        {
-            this._state = this._state with { Depth = value };
-        }
-    }
+    public int Depth => this._state.Depth;
 
     private Command CreateCommand(string[] commandTokens) => new(commandTokens[0], int.Parse(commandTokens[1]));
 }
