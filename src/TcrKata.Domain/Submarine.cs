@@ -7,21 +7,18 @@ public class Submarine : ISubmarine
         string[] data = command.Split(' ');
         string commandName = data[0];
         int value = int.Parse(data[1]);
-
-        if (commandName == "down")
+        
+        switch (commandName)
         {
-            this.Aim += value;
-            return;
-        }
-        if (commandName == "up")
-        {
-            this.Aim -= value;
-            return;
-        }
-        if (commandName == "forward")
-        {
-            this.Position += value;
-            return;
+            case "down":
+                this.Aim += value;
+                return;
+            case "up":
+                this.Aim -= value;
+                return;
+            case "forward":
+                this.Position += value;
+                return;
         }
     }
 
