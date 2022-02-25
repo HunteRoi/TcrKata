@@ -20,7 +20,7 @@ public class Submarine : ISubmarine
         }
         if (commandName == "forward")
         {
-            this.Position = value;
+            this.Position += value;
             return;
         }
     }
