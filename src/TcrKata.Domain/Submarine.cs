@@ -3,7 +3,7 @@ namespace TcrKata.Domain;
 public class Submarine : ISubmarine, IDisposable
 {
     private State _state;
-    private ICommandParser? _commandParser;
+    private ICommandParser _commandParser;
 
     public Submarine()
     {
@@ -25,6 +25,6 @@ public class Submarine : ISubmarine, IDisposable
 
     public void Dispose()
     {
-        this._commandParser = null;
+        GC.SuppressFinalize(this._commandParser);
     }
 }
