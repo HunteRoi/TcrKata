@@ -49,7 +49,14 @@ public class Submarine : ISubmarine
         }
     }
 
-    public int Depth { get; private set; }
+    public int Depth
+    {
+        get => this._state.Depth;
+        private set
+        {
+            this._state = this._state with { Depth = value };
+        }
+    }
 
     private Command CreateCommand(string[] commandTokens) => new(commandTokens[0], int.Parse(commandTokens[1]));
 }
