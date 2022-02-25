@@ -91,13 +91,14 @@ public class SubmarineTest
         this.submarine.Position.Should().Be(expectedPosition);
     }
     
-    [Fact]
-    public void ExecuteCommand_Should_IncrementPositionTwice_Given_ForwardCommandIsReceivedTwice()
+    [Theory]
+    [InlineData("forward 1", 2)]
+    public void ExecuteCommand_Should_IncrementPositionTwice_Given_ForwardCommandIsReceivedTwice(string command, int expectedPosition)
     {
-        this.submarine.ExecuteCommand("forward 1");
+        this.submarine.ExecuteCommand(command);
         
-        this.submarine.ExecuteCommand("forward 1");
+        this.submarine.ExecuteCommand(command);
 
-        this.submarine.Position.Should().Be(2);
+        this.submarine.Position.Should().Be(expectedPosition);
     }
 }
