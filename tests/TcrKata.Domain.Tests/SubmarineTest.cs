@@ -56,4 +56,15 @@ public class SubmarineTest
 
         this.submarine.Aim.Should().Be(expectedAim);
     }
+    
+    [Theory]
+    [InlineData("down 1", 2)]
+    public void ExecuteCommand_Should_IncrementAimTwice_Given_CommendDownOneIsReceivedTwice(string command, int expectedAim)
+    {
+        this.submarine.ExecuteCommand(command);
+        
+        this.submarine.ExecuteCommand(command);
+        
+        this.submarine.Aim.Should().Be(expectedAim);
+    }
 }
