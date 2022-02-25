@@ -34,9 +34,10 @@ public class Submarine : ISubmarine, IDisposable
     /// <param name="command">The command.</param>
     public void ExecuteCommand(string command)
     {
-        Option<ICommand> retrievedCommand = this._commandParser.CreateCommand(command);
-        Option<State> newEstate = retrievedCommand.Map(c => c.Execute(this._state));
-        this._state = newEstate.Match(v => v, this._state);
+        this._state= this._commandParser
+            .CreateCommand(command)
+            .Map(c => c.Execute(this._state))
+            .Match(v => v, this._state);
     }
 
     /// <summary>
