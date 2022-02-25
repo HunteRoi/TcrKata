@@ -4,8 +4,7 @@ public class Submarine : ISubmarine
 {
     public void ExecuteCommand(string command)
     {
-        string[] data = command.Split(' ');
-        var commandObject = this.CreateCommand(data);
+        var commandObject = this.CreateCommand(command.Split(' '));
         
         switch (commandObject.Name)
         {
@@ -29,6 +28,8 @@ public class Submarine : ISubmarine
     public int Depth { get; private set; }
 
     private record Command(string Name, int Value);
+
+    private record State(int Aim, int Position, int Depth);
 
     private Command CreateCommand(string[] commandTokens) => new(commandTokens[0], int.Parse(commandTokens[1]));
 }
