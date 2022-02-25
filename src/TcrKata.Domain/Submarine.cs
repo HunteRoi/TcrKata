@@ -5,6 +5,8 @@ public class Submarine : ISubmarine
     private record Command(string Name, int Value);
     private record State(int Aim, int Position, int Depth);
 
+    private State _state = new(0, 0, 0);
+
     public void ExecuteCommand(string command)
     {
         var commandObject = this.CreateCommand(command.Split(' '));
@@ -29,7 +31,15 @@ public class Submarine : ISubmarine
         }
     }
 
-    public int Aim { get; private set; }
+    public int Aim
+    {
+        get => this._state.Aim;
+        private set
+        {
+            this._state = this._state with { Aim = value };
+        }
+    }
+
     public int Position { get; private set; }
     public int Depth { get; private set; }
 
