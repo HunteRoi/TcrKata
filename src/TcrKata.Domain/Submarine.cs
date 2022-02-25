@@ -26,11 +26,7 @@ public class Submarine : ISubmarine, IDisposable
                 break;
 
             case "forward":
-                this._state = this._state with
-                {
-                    Position = this._state.Position + commandObject.Value,
-                    Depth = this._state.Depth + (this._state.Aim * commandObject.Value)
-                };
+                this._state = commandObject.Execute(this._state);
                 break;
 
             default:
