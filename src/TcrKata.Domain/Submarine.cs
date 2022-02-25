@@ -6,6 +6,12 @@ public class Submarine : ISubmarine
     private record State(int Aim, int Position, int Depth);
 
     private State _state = new(0, 0, 0);
+    private readonly ICommandParser _commandParser;
+
+    public Submarine()
+    {
+        this._commandParser = new CommandParser();
+    }
 
     public void ExecuteCommand(string command)
     {
