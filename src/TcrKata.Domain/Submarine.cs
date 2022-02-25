@@ -40,7 +40,15 @@ public class Submarine : ISubmarine
         }
     }
 
-    public int Position { get; private set; }
+    public int Position
+    {
+        get => this._state.Position;
+        private set
+        {
+            this._state = this._state with { Position = value };
+        }
+    }
+
     public int Depth { get; private set; }
 
     private Command CreateCommand(string[] commandTokens) => new(commandTokens[0], int.Parse(commandTokens[1]));
