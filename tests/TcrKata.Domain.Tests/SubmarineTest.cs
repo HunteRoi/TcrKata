@@ -38,6 +38,7 @@ public class SubmarineTest
 
     [Theory]
     [InlineData("down 1", 1)]
+    [InlineData("down 2", 2)]
     public void ExecuteCommand_Should_IncrementAim_With_CommandDownOne(string command, int expectedAim)
     {
         this.submarine.ExecuteCommand(command);
