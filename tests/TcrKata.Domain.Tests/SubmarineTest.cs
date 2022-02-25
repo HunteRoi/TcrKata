@@ -104,6 +104,7 @@ public class SubmarineTest
 
     [Theory]
     [InlineData("down 1" ,"forward 1", 1)]
+    [InlineData("down 2" ,"forward 2", 4)]
     public void ExecuteCommand_Should_IncreasedDepth_Given_AimIsPositiveAndCommandIsForward(string downCommand,string forwardCommand,int expectedDepth)
     {
         //test
