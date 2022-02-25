@@ -2,7 +2,6 @@ namespace TcrKata.Domain;
 
 public class Submarine : ISubmarine
 {
-    private record Command(string Name, int Value);
     private record State(int Aim, int Position, int Depth);
 
     private State _state = new(0, 0, 0);
