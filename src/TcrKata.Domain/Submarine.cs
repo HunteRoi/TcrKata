@@ -27,8 +27,6 @@ public class Submarine : ISubmarine
     public int Position { get; private set; }
     public int Depth { get; private set; }
 
-    private State _state { get; set; }
-
     private record Command(string Name, int Value);
 
     private record State(int Aim, int Position, int Depth);
