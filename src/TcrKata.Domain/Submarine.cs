@@ -34,7 +34,7 @@ public class Submarine : ISubmarine, IDisposable
     /// <param name="command">The command.</param>
     public void ExecuteCommand(string command)
     {
-        this._state= this._commandParser
+        this._state = this._commandParser
             .CreateCommand(command)
             .Map(c => c.Execute(this._state))
             .Match(v => v, this._state);
