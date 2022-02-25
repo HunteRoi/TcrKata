@@ -23,4 +23,10 @@ public class SubmarineTest
     {
         this.submarine.Aim.Should().Be(0);
     }
+
+    [Fact]
+    public void Position_Should_BeInitializedWithZero()
+    {
+        this.submarine.Position.Should().Be(0);
+    }
 }
