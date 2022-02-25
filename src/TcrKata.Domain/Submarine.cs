@@ -44,7 +44,7 @@ public class Submarine : ISubmarine, IDisposable
     public void ExecuteCommand(string command) =>
         this._state = this._commandParser
             .CreateCommand(command)
-            .Bind(this.GetNexState)
+            .Bind(this.GetNextState)
             .Match(_ => _, this._state);
 
     /// <summary>
@@ -65,5 +65,5 @@ public class Submarine : ISubmarine, IDisposable
     /// <value>The depth.</value>
     public int Depth => this._state.Depth;
 
-    private Option<State> GetNexState(ICommand command) => command.Execute(this._state);
+    private Option<State> GetNextState(ICommand command) => command.Execute(this._state);
 }
