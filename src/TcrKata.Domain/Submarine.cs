@@ -2,9 +2,6 @@ namespace TcrKata.Domain;
 
 public class Submarine : ISubmarine, IDisposable
 {
-    private record Command(string Name, int Value);
-    private record State(int Aim, int Position, int Depth);
-
     private State _state;
     private ICommandParser? _commandParser;
 
@@ -21,7 +18,7 @@ public class Submarine : ISubmarine, IDisposable
         switch (commandObject.Name)
         {
             case "down":
-                this._state = this._state with { Aim = this._state.Aim + commandObject.Value };
+                this._state = commandObject.Execute(this._state);
                 break;
 
             case "up":
