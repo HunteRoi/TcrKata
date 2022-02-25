@@ -80,4 +80,14 @@ public class SubmarineTest
         
         this.submarine.Aim.Should().Be(expectedAim);
     }
+
+    [Theory]
+    [InlineData("forward 1", 1)]
+    [InlineData("forward 2", 2)]
+    public void ExecuteCommand_Should_IncrementPositionByOne_Given_ForwardOneCommandIsReceived(string command, int expectedPosition)
+    {
+        this.submarine.ExecuteCommand(command);
+
+        this.submarine.Position.Should().Be(expectedPosition);
+    }
 }

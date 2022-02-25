@@ -18,9 +18,14 @@ public class Submarine : ISubmarine
             this.Aim -= value;
             return;
         }
+        if (commandName == "forward")
+        {
+            this.Position = value;
+            return;
+        }
     }
 
     public int Aim { get; private set; }
-    public int Position => 0;
+    public int Position { get; private set; }
     public int Depth => 0;
 }
