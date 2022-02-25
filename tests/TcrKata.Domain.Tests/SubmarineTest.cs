@@ -49,6 +49,7 @@ public class SubmarineTest
 
     [Theory]
     [InlineData("up 1", -1)]
+    [InlineData("up 2", -2)]
     public void ExecuteCommand_Should_DecrementAim_WithCommandUpOne(string command, int expectedAim)
     {
         this.submarine.ExecuteCommand(command);
