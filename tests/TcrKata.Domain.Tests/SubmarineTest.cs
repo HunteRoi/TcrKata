@@ -60,7 +60,18 @@ public class SubmarineTest
     [Theory]
     [InlineData("down 1", 2)]
     [InlineData("down 2", 4)]
-    public void ExecuteCommand_Should_IncrementAimTwice_Given_CommendDownOneIsReceivedTwice(string command, int expectedAim)
+    public void ExecuteCommand_Should_IncrementAimTwice_Given_CommandDownOneIsReceivedTwice(string command, int expectedAim)
+    {
+        this.submarine.ExecuteCommand(command);
+        
+        this.submarine.ExecuteCommand(command);
+        
+        this.submarine.Aim.Should().Be(expectedAim);
+    }
+    
+    [Theory]
+    [InlineData("up 1", -2)]
+    public void ExecuteCommand_Should_IncrementAimTwice_Given_CommandUpOneIsReceivedTwice(string command, int expectedAim)
     {
         this.submarine.ExecuteCommand(command);
         
