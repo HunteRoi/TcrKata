@@ -22,7 +22,7 @@ public class Submarine : ISubmarine, IDisposable
                 break;
 
             case "up":
-                this._state = this._state with { Aim = this._state.Aim - commandObject.Value };
+                this._state = commandObject.Execute(this._state);
                 break;
 
             case "forward":
