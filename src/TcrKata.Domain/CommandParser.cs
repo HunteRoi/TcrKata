@@ -2,8 +2,9 @@
 
 public class CommandParser : ICommandParser
 {
-    public ICommand CreateCommand(string[] commandTokens)
+    public ICommand CreateCommand(string command)
     {
+        string[] commandTokens = command.Split(' ');
         return commandTokens[0].ToLower() switch
         {
             "up" => new UpCommand { Value = int.Parse(commandTokens[1]) },

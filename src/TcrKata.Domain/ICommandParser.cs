@@ -2,5 +2,5 @@
 
 public interface ICommandParser
 {
-    ICommand CreateCommand(string[] commandTokens);
+    ICommand CreateCommand(string command);
 }
