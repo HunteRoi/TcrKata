@@ -4,6 +4,10 @@ public class Submarine : ISubmarine
 {
     public void ExecuteCommand(string command)
     {
+        string[] data = command.Split(' ');
+        string commandName = data[0];
+        int value = int.Parse(data[1]);
+
         if (command == "down 2")
         {
             this.Aim = 2;
