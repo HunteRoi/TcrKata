@@ -7,6 +7,6 @@ public class ForwardCommand : ICommand
 
     public State Execute(State currentState)
     {
-        return currentState with { Aim = currentState.Aim - this.Value };
+        throw new NotImplementedException();
     }
 }

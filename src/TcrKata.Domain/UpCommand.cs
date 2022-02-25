@@ -7,6 +7,6 @@ public class UpCommand : ICommand
 
     public State Execute(State currentState)
     {
-        throw new NotImplementedException();
+        return currentState with { Aim = currentState.Aim - this.Value };
     }
 }
