@@ -12,13 +12,13 @@ public class Submarine : ISubmarine
         {
             case "down":
                 this.Aim += value;
-                return;
+                break;
             case "up":
                 this.Aim -= value;
-                return;
+                break;
             case "forward":
                 this.Position += value;
-                return;
+                break;
             default:
                 break;
         }
