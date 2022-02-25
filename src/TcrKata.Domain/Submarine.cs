@@ -25,6 +25,6 @@ public class Submarine : ISubmarine, IDisposable
 
     public void Dispose()
     {
-        GC.SuppressFinalize(this._commandParser);
+        GC.SuppressFinalize(this);
     }
 }
