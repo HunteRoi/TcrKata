@@ -45,9 +45,10 @@ public class Submarine : ISubmarine, IDisposable
         this._state = this._commandParser
             .CreateCommand(command)
             .Bind(this.GetNexState)
-            .Match(v => v, this._state);
+            .Match(_ => _, this._state);
 
     private Option<State> GetNexState(ICommand command) => command.Execute(this._state); 
+    
     
     
     /// <summary>
