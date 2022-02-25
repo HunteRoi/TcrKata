@@ -1,4 +1,6 @@
-﻿namespace TcrKata.Domain;
+﻿using LanguageExt;
+
+namespace TcrKata.Domain;
 
 /// <summary>
 /// A command parser for an instance of <see cref="Submarine"/>
@@ -10,5 +12,5 @@ public interface ICommandParser
     /// </summary>
     /// <param name="command">The command.</param>
     /// <returns></returns>
-    ICommand CreateCommand(string command);
+    Option<ICommand> CreateCommand(string command);
 }

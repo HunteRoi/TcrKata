@@ -1,3 +1,5 @@
+using LanguageExt;
+
 namespace TcrKata.Domain;
 
 /// <summary>
@@ -32,7 +34,9 @@ public class Submarine : ISubmarine, IDisposable
     /// <param name="command">The command.</param>
     public void ExecuteCommand(string command)
     {
-        this._state = this._commandParser.CreateCommand(command).Execute(this._state);
+        Option<ICommand> retrievedCommand = this._commandParser.CreateCommand(command);
+        Option<State> newEstate = retrievedCommand.Map(c => c.Execute(this._state));
+        this._state = newEstate.Match(v => v, this._state);
     }
 
     /// <summary>
