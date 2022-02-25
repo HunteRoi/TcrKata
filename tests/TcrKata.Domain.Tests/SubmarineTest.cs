@@ -46,4 +46,14 @@ public class SubmarineTest
 
         this.submarine.Aim.Should().Be(expectedAim);
     }
+
+    [Fact]
+    public void ExecuteCommand_Should_DecrementAim_WithCommandUpOne()
+    {
+        string command = "up 1";
+
+        this.submarine.ExecuteCommand(command);
+
+        this.submarine.Aim.Should().Be(-1);
+    }
 }

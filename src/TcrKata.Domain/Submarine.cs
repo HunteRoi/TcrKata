@@ -13,6 +13,11 @@ public class Submarine : ISubmarine
             this.Aim = value;
             return;
         }
+        if (commandName == "up")
+        {
+            this.Aim = -1 * value;
+            return;
+        }
     }
 
     public int Aim { get; private set; }
