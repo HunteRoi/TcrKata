@@ -14,24 +14,7 @@ public class Submarine : ISubmarine, IDisposable
     public void ExecuteCommand(string command)
     {
         var commandObject = this._commandParser!.CreateCommand(command.Split(' '));
-
-        switch (commandObject.Name)
-        {
-            case "down":
-                this._state = commandObject.Execute(this._state);
-                break;
-
-            case "up":
-                this._state = commandObject.Execute(this._state);
-                break;
-
-            case "forward":
-                this._state = commandObject.Execute(this._state);
-                break;
-
-            default:
-                break;
-        }
+        this._state = commandObject.Execute(this._state);
     }
 
     public int Aim => this._state.Aim;
