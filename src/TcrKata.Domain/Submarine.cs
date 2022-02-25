@@ -5,20 +5,19 @@ public class Submarine : ISubmarine
     public void ExecuteCommand(string command)
     {
         string[] data = command.Split(' ');
-        string commandName = data[0];
-        int value = int.Parse(data[1]);
+        var commandObject = this.CreateCommand(data);
         
-        switch (commandName)
+        switch (commandObject.Name)
         {
             case "down":
-                this.Aim += value;
+                this.Aim += commandObject.Value;
                 break;
             case "up":
-                this.Aim -= value;
+                this.Aim -= commandObject.Value;
                 break;
             case "forward":
-                this.Position += value;
-                this.Depth += this.Aim * value;
+                this.Position += commandObject.Value;
+                this.Depth += this.Aim * commandObject.Value;
                 break;
             default:
                 break;
