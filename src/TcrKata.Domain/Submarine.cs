@@ -1,3 +1,5 @@
+using LanguageExt;
+
 namespace TcrKata.Domain;
 
 /// <summary>
@@ -39,14 +41,15 @@ public class Submarine : ISubmarine, IDisposable
     ///     Executes the command.
     /// </summary>
     /// <param name="command">The command.</param>
-    public void ExecuteCommand(string command)
-    {
+    public void ExecuteCommand(string command) =>
         this._state = this._commandParser
             .CreateCommand(command)
-            .Map(c => c.Execute(this._state))
+            .Bind(this.GetNexState)
             .Match(v => v, this._state);
-    }
 
+    private Option<State> GetNexState(ICommand command) => command.Execute(this._state); 
+    
+    
     /// <summary>
     ///     Gets the aim.
     /// </summary>
