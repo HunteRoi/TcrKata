@@ -15,7 +15,7 @@ public class Submarine : ISubmarine, IDisposable
 
     public void ExecuteCommand(string command)
     {
-        var commandObject = this.CreateCommand(command.Split(' '));
+        var commandObject = this._commandParser!.CreateCommand(command.Split(' '));
 
         switch (commandObject.Name)
         {
@@ -45,8 +45,6 @@ public class Submarine : ISubmarine, IDisposable
     public int Position => this._state.Position;
 
     public int Depth => this._state.Depth;
-
-    private Command CreateCommand(string[] commandTokens) => new(commandTokens[0], int.Parse(commandTokens[1]));
 
     public void Dispose()
     {
