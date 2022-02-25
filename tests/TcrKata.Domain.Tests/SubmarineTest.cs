@@ -56,28 +56,28 @@ public class SubmarineTest
 
         this.submarine.Aim.Should().Be(expectedAim);
     }
-    
+
     [Theory]
     [InlineData("down 1", 2)]
     [InlineData("down 2", 4)]
     public void ExecuteCommand_Should_IncrementAimTwice_Given_CommandDownOneIsReceivedTwice(string command, int expectedAim)
     {
         this.submarine.ExecuteCommand(command);
-        
+
         this.submarine.ExecuteCommand(command);
-        
+
         this.submarine.Aim.Should().Be(expectedAim);
     }
-    
+
     [Theory]
     [InlineData("up 1", -2)]
     [InlineData("up 2", -4)]
     public void ExecuteCommand_Should_DecrementAimTwice_Given_CommandUpOneIsReceivedTwice(string command, int expectedAim)
     {
         this.submarine.ExecuteCommand(command);
-        
+
         this.submarine.ExecuteCommand(command);
-        
+
         this.submarine.Aim.Should().Be(expectedAim);
     }
 
@@ -90,26 +90,25 @@ public class SubmarineTest
 
         this.submarine.Position.Should().Be(expectedPosition);
     }
-    
+
     [Theory]
     [InlineData("forward 1", 2)]
     public void ExecuteCommand_Should_IncrementPositionTwice_Given_ForwardCommandIsReceivedTwice(string command, int expectedPosition)
     {
         this.submarine.ExecuteCommand(command);
-        
+
         this.submarine.ExecuteCommand(command);
 
         this.submarine.Position.Should().Be(expectedPosition);
     }
 
     [Theory]
-    [InlineData("down 1" ,"forward 1", 1)]
-    [InlineData("down 2" ,"forward 2", 4)]
-    public void ExecuteCommand_Should_IncreasedDepth_Given_AimIsPositiveAndCommandIsForward(string downCommand,string forwardCommand,int expectedDepth)
+    [InlineData("down 1", "forward 1", 1)]
+    [InlineData("down 2", "forward 2", 4)]
+    public void ExecuteCommand_Should_IncreasedDepth_Given_AimIsPositiveAndCommandIsForward(string downCommand, string forwardCommand, int expectedDepth)
     {
-        //test
         this.submarine.ExecuteCommand(downCommand);
-        
+
         this.submarine.ExecuteCommand(forwardCommand);
 
         this.submarine.Depth.Should().Be(expectedDepth);
