@@ -19,6 +19,8 @@ public class Submarine : ISubmarine
             case "forward":
                 this.Position += value;
                 return;
+            default:
+                break;
         }
     }
 
