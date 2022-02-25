@@ -71,6 +71,7 @@ public class SubmarineTest
     
     [Theory]
     [InlineData("up 1", -2)]
+    [InlineData("up 2", -4)]
     public void ExecuteCommand_Should_IncrementAimTwice_Given_CommandUpOneIsReceivedTwice(string command, int expectedAim)
     {
         this.submarine.ExecuteCommand(command);
