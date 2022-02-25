@@ -13,8 +13,7 @@ public class Submarine : ISubmarine, IDisposable
 
     public void ExecuteCommand(string command)
     {
-        var commandObject = this._commandParser.CreateCommand(command);
-        this._state = commandObject.Execute(this._state);
+        this._state = this._commandParser.CreateCommand(command).Execute(this._state);
     }
 
     public int Aim => this._state.Aim;
