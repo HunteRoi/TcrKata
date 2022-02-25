@@ -10,12 +10,12 @@ public class Submarine : ISubmarine
 
         if (commandName == "down" && value == 2)
         {
-            this.Aim = 2;
+            this.Aim = value;
             return;
         }
         if (commandName == "down" && value == 3)
         {
-            this.Aim = 3;
+            this.Aim = value;
             return;
         }
         this.Aim += 1;
