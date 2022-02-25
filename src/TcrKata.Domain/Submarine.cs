@@ -18,6 +18,7 @@ public class Submarine : ISubmarine
                 break;
             case "forward":
                 this.Position += value;
+                this.Depth = 1;
                 break;
             default:
                 break;
@@ -26,5 +27,5 @@ public class Submarine : ISubmarine
 
     public int Aim { get; private set; }
     public int Position { get; private set; }
-    public int Depth => 0;
+    public int Depth { get; private set; }
 }
