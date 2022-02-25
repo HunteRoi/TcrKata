@@ -8,7 +8,7 @@ public class Submarine : ISubmarine
         string commandName = data[0];
         int value = int.Parse(data[1]);
 
-        if (command == "down 2")
+        if (commandName == "down" && value == 2)
         {
             this.Aim = 2;
             return;
