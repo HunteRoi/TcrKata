@@ -9,15 +9,20 @@ public class CommandParser : ICommandParser
     {
         string[] commandTokens = command.Split(' ');
         int value = int.Parse(commandTokens[1]);
+
+        State ExecuteUpCommand(State currentState) => currentState with { Aim = currentState.Aim - value };
+        State ExecuteDownCommand(State currentState) => currentState with { Aim = currentState.Aim + value };
+        State ExecuteForwardCommand(State currentState) => currentState with
+        {
+            Position = currentState.Position + value,
+            Depth = currentState.Depth + (currentState.Aim * value)
+        };
+
         return commandTokens[0].ToLower() switch
         {
-            "up" => Some((State currentState) => currentState with { Aim = currentState.Aim - value }),
-            "down" => Some((State currentState) => currentState with { Aim = currentState.Aim + value }),
-            "forward" => Some((State currentState) => currentState with
-            {
-                Position = currentState.Position + value,
-                Depth = currentState.Depth + (currentState.Aim * value)
-            }),
+            "up" => Some(ExecuteUpCommand),
+            "down" => Some(ExecuteDownCommand),
+            "forward" => Some(ExecuteForwardCommand),
             _ => Option<Func<State, State>>.None,
         };
     }
