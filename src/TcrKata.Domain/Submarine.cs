@@ -3,24 +3,24 @@ using LanguageExt;
 namespace TcrKata.Domain;
 
 /// <summary>
-///     pioup pioup
+/// pioup pioup
 /// </summary>
 /// <seealso cref="TcrKata.Domain.ISubmarine" />
 /// <seealso cref="System.IDisposable" />
 public class Submarine : ISubmarine, IDisposable
 {
     /// <summary>
-    ///     The command parser
+    /// The command parser
     /// </summary>
     private readonly ICommandParser _commandParser;
 
     /// <summary>
-    ///     The state
+    /// The state
     /// </summary>
     private State _state;
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="Submarine" /> class.
+    /// Initializes a new instance of the <see cref="Submarine" /> class.
     /// </summary>
     public Submarine()
     {
@@ -29,8 +29,28 @@ public class Submarine : ISubmarine, IDisposable
     }
 
     /// <summary>
-    ///     Performs application-defined tasks associated with freeing, releasing, or resetting
-    ///     unmanaged resources.
+    /// Gets the aim.
+    /// </summary>
+    /// <value>The aim.</value>
+    public int Aim => this._state.Aim;
+
+    /// <summary>
+    /// Gets the depth.
+    /// </summary>
+    /// <value>The depth.</value>
+    public int Depth => this._state.Depth;
+
+    /// <summary>
+    /// Gets the position.
+    /// </summary>
+    /// <value>The position.</value>
+    public int Position => this._state.Position;
+
+    private Option<State> GetNextState(Func<State, State> command) => command(this._state);
+
+    /// <summary>
+    /// Performs application-defined tasks associated with freeing, releasing, or resetting
+    /// unmanaged resources.
     /// </summary>
     public void Dispose()
     {
@@ -38,7 +58,7 @@ public class Submarine : ISubmarine, IDisposable
     }
 
     /// <summary>
-    ///     Executes the command.
+    /// Executes the command.
     /// </summary>
     /// <param name="command">The command.</param>
     public void ExecuteCommand(string command) =>
@@ -46,24 +66,4 @@ public class Submarine : ISubmarine, IDisposable
             .CreateCommand(command)
             .Bind(this.GetNextState)
             .Match(_ => _, this._state);
-
-    /// <summary>
-    ///     Gets the aim.
-    /// </summary>
-    /// <value>The aim.</value>
-    public int Aim => this._state.Aim;
-
-    /// <summary>
-    ///     Gets the position.
-    /// </summary>
-    /// <value>The position.</value>
-    public int Position => this._state.Position;
-
-    /// <summary>
-    ///     Gets the depth.
-    /// </summary>
-    /// <value>The depth.</value>
-    public int Depth => this._state.Depth;
-
-    private Option<State> GetNextState(ICommand command) => command.Execute(this._state);
 }

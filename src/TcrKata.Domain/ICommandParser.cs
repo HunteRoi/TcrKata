@@ -3,7 +3,7 @@
 namespace TcrKata.Domain;
 
 /// <summary>
-/// A command parser for an instance of <see cref="Submarine"/>
+/// A command parser for an instance of <see cref="Submarine" />
 /// </summary>
 public interface ICommandParser
 {
@@ -12,5 +12,5 @@ public interface ICommandParser
     /// </summary>
     /// <param name="command">The command.</param>
     /// <returns></returns>
-    Option<ICommand> CreateCommand(string command);
+    Option<Func<State, State>> CreateCommand(string command);
 }

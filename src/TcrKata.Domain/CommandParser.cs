@@ -4,15 +4,20 @@ namespace TcrKata.Domain;
 
 public class CommandParser : ICommandParser
 {
-    public Option<ICommand> CreateCommand(string command)
+    public Option<Func<State, State>> CreateCommand(string command)
     {
         string[] commandTokens = command.Split(' ');
+        int value = int.Parse(commandTokens[1]);
         return commandTokens[0].ToLower() switch
         {
-            "up" => new UpCommand { Value = int.Parse(commandTokens[1]) },
-            "down" => new DownCommand { Value = int.Parse(commandTokens[1]) },
-            "forward" => new ForwardCommand { Value = int.Parse(commandTokens[1]) },
-            _ => Option<ICommand>.None,
+            "up" => Prelude.Some<Func<State, State>>(currentState => currentState with { Aim = currentState.Aim - value }),
+            "down" => Prelude.Some<Func<State, State>>(currentState => currentState with { Aim = currentState.Aim + value }),
+            "forward" => Prelude.Some<Func<State, State>>(currentState => currentState with
+            {
+                Position = currentState.Position + value,
+                Depth = currentState.Depth + (currentState.Aim * value)
+            }),
+            _ => Option<Func<State, State>>.None,
         };
     }
 }
