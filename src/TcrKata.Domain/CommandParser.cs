@@ -1,4 +1,5 @@
 ﻿using LanguageExt;
+using static LanguageExt.Prelude;
 
 namespace TcrKata.Domain;
 
@@ -10,9 +11,9 @@ public class CommandParser : ICommandParser
         int value = int.Parse(commandTokens[1]);
         return commandTokens[0].ToLower() switch
         {
-            "up" => Prelude.Some<Func<State, State>>(currentState => currentState with { Aim = currentState.Aim - value }),
-            "down" => Prelude.Some<Func<State, State>>(currentState => currentState with { Aim = currentState.Aim + value }),
-            "forward" => Prelude.Some<Func<State, State>>(currentState => currentState with
+            "up" => Some((State currentState) => currentState with { Aim = currentState.Aim - value }),
+            "down" => Some((State currentState) => currentState with { Aim = currentState.Aim + value }),
+            "forward" => Some((State currentState) => currentState with
             {
                 Position = currentState.Position + value,
                 Depth = currentState.Depth + (currentState.Aim * value)
