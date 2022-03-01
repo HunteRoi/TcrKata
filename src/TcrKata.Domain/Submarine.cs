@@ -46,6 +46,11 @@ public class Submarine : ISubmarine, IDisposable
     /// <value>The position.</value>
     public int Position => this._state.Position;
 
+    /// <summary>
+    /// Gets the state of the next.
+    /// </summary>
+    /// <param name="command">The command.</param>
+    /// <returns></returns>
     private Option<State> GetNextState(Func<State, State> command) => command(this._state);
 
     /// <summary>
